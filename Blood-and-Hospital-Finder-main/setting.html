@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style4.css">
+    <title>Setting</title>
+</head>
+<body>
+    <div class="settings-container">
+        <h2>Settings</h2>
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Your Name">
+          
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Your Email">
+          
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="New Password">
+          
+          <label for="confirm-password">Confirm Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password">
+          
+          <h3>Notifications</h3>
+          <div class="checkbox-container">
+            <input type="checkbox" id="notify-email" name="notify-email" checked>
+            <label for="notify-email">Notify me by email</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="notify-sms" name="notify-sms">
+            <label for="notify-sms">Notify me by SMS</label>
+          </div>
+          
+          <h3>Privacy</h3>
+          <div class="radio-container">
+            <input type="radio" id="public" name="privacy" value="public">
+            <label for="public">Public</label>
+          </div>
+          
+          <div class="radio-container">
+            <input type="radio" id="private" name="privacy" value="private" checked>
+            <label for="private">Private</label>
+          </div>
+          
+          <input type="submit" value="Save Changes">
+        </form>
+      </div>
+      
+</body>
+</html>

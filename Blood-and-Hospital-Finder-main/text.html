@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+         <!-- Cool Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+   
+        <!-- Our stylesheet -->
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body style="background-image:url(https://www.pjm.dk/hubfs/WEB-01/PJM-F-Front-end-design.jpg#keepProtocol) ;" >
+        <div style="    margin-top: 185px;
+  width: 311px;
+  margin-left: 450px;" >
+<div style=" padding: 16px;text-align: center;border:white; border-width:2px; border-style:solid;background: rgba(25, 0, 255, 0.064);text:white"><div id="content_container">
+            <div id="form_container">
+                <div id="form_header_container">
+                    <h2 id="form_header"> Login Form </h2>
+                </div>
+
+                <div id="form_content_container">
+                    <div id="form_content_inner_container">
+                        <input type="text" id="full_name" placeholder="Full name">
+                        <input type="email" id="email" placeholder="Email">
+                        <input type="password" id="password" placeholder="New Password">
+
+                        <input type="text" id="What_is_your_fav_sport" placeholder="What_is_your_fav_sport">
+                        <input type="text" id="nickname" placeholder="nickname">
+
+                        <div id="button_container">
+                            <button onclick="login()">Login</button>
+                            <button onclick="register()">Register</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <!-- Our script must be loaded after firebase references -->
+    <script src="login.js"></script>
+
+</html> 

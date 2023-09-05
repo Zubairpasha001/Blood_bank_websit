@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Place Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-top: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ place.name }}</h1>
+  {% if place.rating %}
+    <p>Rating: {{ place.rating }}</p>
+  {% endif %}
+  {% if place.formatted_address %}
+    <p>Address: {{ place.formatted_address }}</p>
+  {% endif %}
+  {% if place.website %}
+    <p>Website: <a href="{{ place.website }}">{{ place.website }}</a></p>
+  {% endif %}
+  {% if place.geometry and place.geometry.location %}
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: {{ place.geometry.location.lat }}, lng: {{ place.geometry.location.lng }} },
+          zoom: 14
+        });
+
+        new google.maps.Marker({
+          position: { lat: {{ place.geometry.location.lat }}, lng: {{ place.geometry.location.lng }} },
+          map,
+          title: "{{ place.name }}"
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfWP_iKshvMZmoUhz4VKXC4y3xoDTmE-4&callback=initMap" async defer></script>
+  {% endif %}
+  {% if place.types and 'tourist_attraction' in place.types %}
+    <h2>Things to Do:</h2>
+    <ul>
+      {% for activity in place.activities %}
+        <li>{{ activity }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <!-- Add the "Show Directions" button -->
+  {% if place.geometry and place.geometry.location %}
+    <button onclick="showDirections()">Show Directions</button>
+
+    <script>
+      function showDirections() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+            const destLat = {{ place.geometry.location.lat }};
+            const destLng = {{ place.geometry.location.lng }};
+            const url = `https://www.google.com/maps/dir/${userLat},${userLng}/${destLat},${destLng}`;
+            window.open(url);
+          });
+        } else {
+          alert("Geolocation is not supported by your browser.");
+        }
+      }
+    </script>
+  {% endif %}
+</body>
+</html>
+place_info.htm
